@@ -21,7 +21,7 @@ config = Config.parse_obj(global_config)
 # def some_function():
 #     pass
 
-leakip = on_command("leakip", aliases={"谁在窥屏", "查查成分"})
+leakip = on_command("leakip", aliases={"谁在窥屏"})
 
 
 @leakip.handle()
@@ -84,6 +84,7 @@ def share_csrf(key):
 
     return Message(MessageSegment.share(url=url, title=title, content=content, image=image))
 
+
 def xml_csrf(key):
     # card info
     brief = config.brief
@@ -99,6 +100,7 @@ def xml_csrf(key):
     data = escape(xml)
 
     return Message(MessageSegment.xml(data=data))
+
 
 def group_invite_csrf(key):
     # timestamp
@@ -148,7 +150,7 @@ async def fetch_trace(k):
 
 async def get_geo(ip):
     api = config.geoip_api
-    if api=="ipuu":
+    if api == "ipuu":
         result = await get_ipuu(ip)
         if result['code'] != "Success":
             pass
@@ -182,7 +184,7 @@ async def get_ipuu(ip):
     key = config.ipuu_key
 
     url = "https://api.ipplus360.com/ip/geo/v1/district/"
-    params = {'key':key, 'ip': ip}
+    params = {'key': key, 'ip': ip}
     r = httpx.get(url, params=params)
     logger.debug(r.url)
     logger.debug(r.text)
