@@ -2,7 +2,7 @@
   <a href="https://github.com/p0ise/nonebot-plugin-repeep">
     <img src="logo.png" alt="Logo" width="80" height="80">
   </a>
-  <h3 align="center">nonebot-plugin-repeep</h3>
+  <h1 align="center">nonebot-plugin-repeep</h1>
   <p align="center">
     ✨ 一款基于nonebot2的插件，用于获取QQ中当前窥屏用户信息 ✨
     <br />
