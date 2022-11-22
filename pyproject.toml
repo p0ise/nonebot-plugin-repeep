@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nonebot-plugin-repeep"
-version = "0.1.0"
+version = "0.1.1"
 description = "A plugin based on nonebot2, which is used to display the current peeping user information in QQ."
 authors = ["p0ise <changelf@163.com>"]
 license = "GPL-3.0-or-later"
