@@ -1,31 +1,158 @@
-# nonebot-plugin-repeep
+<div align="center">
+  <a href="https://github.com/p0ise/nonebot-plugin-repeep">
+    <img src="logo.png" alt="Logo" width="80" height="80">
+  </a>
+  <h3 align="center">nonebot-plugin-repeep</h3>
+  <p align="center">
+    ✨ 一款基于nonebot2的插件，用于获取QQ中当前窥屏用户信息 ✨
+    <br />
+    <br />
+  	<a href="https://raw.githubusercontent.com/p0ise/nonebot-plugin-repeep/main/LICENSE">
+    	<img src="https://img.shields.io/github/license/p0ise/nonebot-plugin-repeep.svg" alt="license">
+  	</a>
+  	<a href="https://pypi.python.org/pypi/nonebot-plugin-repeep">
+    	<img src="https://img.shields.io/pypi/v/nonebot-plugin-repeep.svg" alt="pypi">
+  	</a>
+  	<img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="python">
+  </p>
+</div>
 
-## 简介
 
-群内或向机器人私聊输入指令：/leakip、/谁在窥屏、/查查成分
 
-机器人会显示当前在看群消息的成员信息，目前电脑端不会显示。
+<!-- TABLE OF CONTENTS -->
 
-预计解决了IP位置信息接口的问题就会开源，欢迎大家加入测试或开发。
+<details>
+  <summary>目录</summary>
+  <ol>
+    <li>
+      <a href="#关于">关于</a>
+    </li>
+    <li>
+      <a href="#开始使用">开始使用</a>
+      <ul>
+        <li><a href="#前置条件">前置条件</a></li>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#配置项">配置项</a></li>
+      </ul>
+    </li>
+    <li><a href="#用法">用法</a></li>
+    <li><a href="#开发计划">开发计划</a></li>
+    <li><a href="#贡献">贡献</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#致谢">致谢</a></li>
+  </ol>
+</details>
 
-## 实现原理
+# 关于
 
-机器人基于python的nonebot2框架，QQ协议基于go-cqhttp。
+本项目能够在QQ中获取当前窥屏用户的信息。
 
-插件实现原理是QQ的跨站请求伪造。通过图片调起GET方法访问接口，从而获取客户端IP和UA信息。
+> 由于本项目性质，使用的人多了之后检测接口随时会失效，且用且珍惜。
 
-然后IP，获取定位信息。暂时基于QQZeng的IP位置离线数据库。
+# 开始使用
 
-根据UA，获取设备信息。基于user_agents库，增加中文优化和型号名称优化。
+## 前置条件
 
-CSRF原理参考：https://cloud.tencent.com/developer/article/1933686
+- CSRF信息记录后端
+- IP定位接口
 
-## 开发计划
+### CSRF后端
+
+本项目的CSRF后端需要实现三个接口：
+
+1. 获取Key（用于标识一个会话用于收集CSRF信息）
+2. 渲染图片记录客户端信息
+3. 取出收集到的信息
+
+目前仅支持PHP实现的后端，具体搭建见[repeep-backend-php](https://github.com/p0ise/repeep-backend-php)。
+
+### IP定位接口
+
+目前采用[IPUU](https://mall.ipplus360.com/pros/IPVFourGeoAPI)提供的区县级定位接口，允许每天2000次免费调用，请开发者自行申请后将密钥填入配置项。
+
+## 安装
+
+使用 nb-cli 安装
+
+```sh
+nb plugin install nonebot-plugin-repeep
+```
+
+使用 pip 安装
+
+```sh
+pip install nonebot-plugin-repeep
+```
+
+## 配置项
+
+配置方式：直接在 NoneBot 全局配置文件中添加以下配置项即可。
+
+### 必填配置
+
+#### CSRF后端
+
+| 名称         | 类型  | 默认值 | 说明           |
+| ------------ | ----- | ------ | -------------- |
+| trace_secret | `str` | 无     | 后端接口的密钥 |
+| trace_api    | `str` | 无     | 后端接口的URL  |
+
+#### IP定位接口
+
+| 名称      | 类型  | 默认值   | 说明                           |
+| --------- | ----- | -------- | ------------------------------ |
+| geoip_api | `str` | `"ipuu"` | 接口选项，目前仅支持`ipuu`接口 |
+| ipuu_key  | `str` | 无       | `ipuu`接口密钥                 |
+
+### 可选配置
+
+#### XML样式
+
+| 名称    | 类型  | 默认值                                                       | 说明            |
+| ------- | ----- | ------------------------------------------------------------ | --------------- |
+| brief   | `str` | `"I Got U"`                                                  | XML卡片简介     |
+| url     | `str` | `"https://www.p0ise.cn/"`                                    | XML卡片跳转链接 |
+| title   | `str` | `"谁在窥屏"`                                                 | XML卡片标题     |
+| content | `str` | ``"抓住你了！"``                                             | XML卡片内容     |
+| source  | `str` | `"I Got U"`                                                  | XML来源信息     |
+| image   | `str` | `"https://static-cdn.p0ise.cn/2022/11/20221120180503774.jpg"` | XML图片         |
+
+# 用法
+
+- 发送 Command ：`谁在窥屏` 或者 `leakip`
+
+# 开发计划
+
+- [x] 优化IP位置数据精准度
 
 - [ ] 优化信息样式，拟采用HTML渲染输出图片
 - [ ] 增加指令选项，指定获取目标群、用户信息
 - [ ] 优化基于UA的设备识别
 - [ ] 增加对电脑的检测
 - [ ] 智能选择CSRF方法
-- [ ] 优化远程接口速度
-- [ ] 优化IP位置数据精准度
+
+# 原理
+
+机器人基于python的nonebot2框架，QQ协议基于go-cqhttp。
+
+插件实现原理是QQ的跨站请求伪造。通过图片调起GET方法访问接口，从而获取客户端IP和UA信息。
+
+根据IP，获取定位信息。基于ipuu的在线接口。
+
+根据UA，获取设备信息。基于user_agents库，增加中文优化和型号名称优化。
+
+CSRF原理参考：https://cloud.tencent.com/developer/article/1933686
+
+# 贡献
+
+Fork本仓库后进行更改，然后提交PR。
+
+# LICENSE
+
+本项目采用 GPL 3.0 协议。
+
+# 致谢
+
+- [Mrs4s / go-cqhttp](https://github.com/Mrs4s/go-cqhttp)
+- [nonebot / nonebot2](https://github.com/nonebot/nonebot2)
+- [Y5neKO / qq_xml_ip](https://github.com/Y5neKO/qq_xml_ip)
