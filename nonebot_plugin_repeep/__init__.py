@@ -164,16 +164,11 @@ async def get_geo(ip):
             if data.get('prov', ''):
                 if data.get('prov', '') != data.get('city', ''):
                     location += data['prov']
-                    if not location.endswith("省"):
-                        location += "省"
                 if data.get('city', ''):
                     location += data['city']
-                    if not location.endswith("市"):
-                        location += "市"
                     if data.get('district', ''):
                         location += data['district']
-                        if not location.endswith("区"):
-                            location += "区"
+
     if not location:
         location = "未知地区"
 
