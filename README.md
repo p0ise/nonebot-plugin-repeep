@@ -39,15 +39,21 @@
     <li><a href="#开发计划">开发计划</a></li>
     <li><a href="#贡献">贡献</a></li>
     <li><a href="#LICENSE">LICENSE</a></li>
+    <li><a href="#联系">联系</a></li>
     <li><a href="#致谢">致谢</a></li>
   </ol>
 </details>
+
 
 # 关于
 
 本项目能够在QQ中获取当前窥屏用户的信息。
 
-![preview](images/preview.png)
+<p float="left">
+  <img src="images/preview1.png" alt="preview1" width="200" />
+  <img src="images/preview2.png" alt="preview2" width="200" /> 
+  <img src="images/preview3.png" alt="preview3" width="200" />
+</p>
 
 > 由于本项目性质，使用的人多了之后检测接口随时会失效，且用且珍惜。
 
@@ -151,7 +157,15 @@ Fork本仓库后进行更改，然后提交PR。
 
 # LICENSE
 
-本项目采用 GPL 3.0 协议。
+本项目采用 GPL 3.0 协议。更多信息请查看 `LICENSE`。
+
+# 联系
+
+博客：[p0ise's blog](https://www.p0ise.cn/)
+
+项目地址：https://github.com/p0ise/nonebot-plugin-repeep
+
+QQ交流群：https://jq.qq.com/?_wv=1027&k=eQPw3qT3
 
 # 致谢
 
