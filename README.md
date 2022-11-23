@@ -19,6 +19,7 @@
 
 
 
+
 <!-- TABLE OF CONTENTS -->
 
 <details>
@@ -45,6 +46,7 @@
 </details>
 
 
+
 # 关于
 
 本项目能够在QQ中获取当前窥屏用户的信息。
@@ -54,6 +56,7 @@
   <img src="https://static-cdn.p0ise.cn/local/preview2.png" alt="preview2" width="200" /> 
   <img src="https://static-cdn.p0ise.cn/local/preview3.png" alt="preview3" width="200" />
 </p>
+
 
 > 由于本项目性质，使用的人多了之后检测接口随时会失效，且用且珍惜。
 
@@ -153,7 +156,15 @@ CSRF原理参考：https://cloud.tencent.com/developer/article/1933686
 
 # 贡献
 
-Fork本仓库后进行更改，然后提交PR。
+贡献使开源社区成为学习、启发和创造的绝佳场所。我们**非常感激**您所做的任何贡献。
+
+如果您有建议可以使本项目更好，请 fork 存储库并创建一个拉取请求。您也可以简单地使用标签 "enhancement" 打开问题。别忘了给项目点一颗 Star！再次感谢！
+
+1. Fork项目
+2. 创建功能分支（`git checkout -b feature/AmazingFeature`）
+3. 提交你的更改（`git commit -m 'Add some AmazingFeature'`'）
+4. 推送到分支（`git push origin feature/AmazingFeature`）
+5. 打开拉取请求
 
 # LICENSE
 
