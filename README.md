@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/p0ise/nonebot-plugin-repeep">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://static-cdn.p0ise.cn/local/logo.png" alt="Logo" width="80" height="80">
   </a>
   <h1 align="center">nonebot-plugin-repeep</h1>
   <p align="center">
@@ -50,9 +50,9 @@
 本项目能够在QQ中获取当前窥屏用户的信息。
 
 <p float="left">
-  <img src="images/preview1.png" alt="preview1" width="200" />
-  <img src="images/preview2.png" alt="preview2" width="200" /> 
-  <img src="images/preview3.png" alt="preview3" width="200" />
+  <img src="https://static-cdn.p0ise.cn/local/preview1.png" alt="preview1" width="200" />
+  <img src="https://static-cdn.p0ise.cn/local/preview2.png" alt="preview2" width="200" /> 
+  <img src="https://static-cdn.p0ise.cn/local/preview3.png" alt="preview3" width="200" />
 </p>
 
 > 由于本项目性质，使用的人多了之后检测接口随时会失效，且用且珍惜。
