@@ -38,14 +38,13 @@
     </li>
     <li><a href="#用法">用法</a></li>
     <li><a href="#开发计划">开发计划</a></li>
+    <li><a href="#原理">原理</a></li>
     <li><a href="#贡献">贡献</a></li>
     <li><a href="#LICENSE">LICENSE</a></li>
     <li><a href="#联系">联系</a></li>
     <li><a href="#致谢">致谢</a></li>
   </ol>
 </details>
-
-
 
 # 关于
 
