@@ -120,7 +120,7 @@ def cardimage_csrf(key):
     source = config.source
 
     k = key + ".jpg"
-    icon = config.trace_api + "?k=" + k
+    icon = config.trace_api + "/index.php?k=" + k
 
     cardimage = f"""[CQ:cardimage,file={file},source={source},icon={icon}]"""
     return Message(cardimage)
