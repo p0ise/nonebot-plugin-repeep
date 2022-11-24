@@ -46,9 +46,10 @@
   </ol>
 </details>
 
+
 # 关于
 
-本项目能够在QQ中获取当前窥屏用户的信息。
+本项目能够在QQ中获取当前窥屏用户的信息（目前只支持移动端QQ检测）。
 
 <p float="left">
   <img src="https://static-cdn.p0ise.cn/local/preview1.png" alt="preview1" width="200" />
@@ -134,7 +135,7 @@ pip install nonebot-plugin-repeep
 # 开发计划
 
 - [x] 优化IP位置数据精准度
-
+- [ ] export插件信息和接口，以供其他插件使用
 - [ ] 优化信息样式，拟采用HTML渲染输出图片
 - [ ] 增加指令选项，指定获取目标群、用户信息
 - [ ] 优化基于UA的设备识别
