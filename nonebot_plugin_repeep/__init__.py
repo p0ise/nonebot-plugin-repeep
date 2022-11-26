@@ -21,7 +21,20 @@ config = Config.parse_obj(global_config)
 # def some_function():
 #     pass
 
+test = on_command("test", aliases={"测试", "测试风控"})
 leakip = on_command("leakip", aliases={"谁在窥屏"})
+
+
+@test.handle()
+async def test_card():
+    key = "deadbeef"
+    msg = json_csrf(key)
+    try:
+        await leakip.send(msg)
+    except:
+        logger.info("Failed to send xml info")
+        await leakip.send("受tx风控，发送失败")
+        return
 
 
 @leakip.handle()
@@ -37,7 +50,7 @@ async def get_client():
 
     imgurl = None
     if config.image == "random":
-        imgurl = random_image()    
+        imgurl = random_image()
     msg = cardimage_csrf(key, imgurl)
     try:
         await leakip.send(msg)
@@ -132,6 +145,26 @@ def cardimage_csrf(key, imgurl=None):
     return Message(cardimage)
 
 
+def json_csrf(key):
+    data = """{"app":"com.tencent.structmsg"&#44;"config":{"ctime":1669305900&#44;"forward":true&#44;"token":"c78dccb3d0c85fd1a9be55185526eb6b"&#44;"type":"normal"}&#44;"desc":"音乐"&#44;"extra":{"app_type":1&#44;"appid":100495085&#44;"msg_seq":16445981872477352116&#44;"uin":21296590}&#44;"meta":{"music":{"action":""&#44;"android_pkg_name":""&#44;"app_type":1&#44;"appid":100495085&#44;"ctime":1669305900&#44;"desc":"痛仰乐队"&#44;"jumpUrl":"https://y.music.163.com/m/song/28949129"&#44;"musicUrl":"http://music.163.com/song/media/outer/url?id=28949129"&#44;"preview":"http://p2.music.126.net/kAqWKIT-hYwO-jTS5BCAmQ==/8888451999121623.jpg"&#44;"sourceMsgId":"0"&#44;"source_icon":"https://i.gtimg.cn/open/app_icon/00/49/50/85/100495085_100_m.png"&#44;"source_url":""&#44;"tag":"网易云音乐"&#44;"title":"两个人的假期"&#44;"uin":21296590}}&#44;"prompt":"&#91;分享&#93;两个人的假期"&#44;"ver":"0.0.0.1"&#44;"view":"music"}"""
+    return Message(MessageSegment.json(data=data))
+
+
+def music_csrf(key):
+    type_ = "163"
+    id_ = 28949129
+
+    return Message(MessageSegment.music(type_=type_, id_=id_))
+
+
+def cmusic_csrf(key):
+    url = "163"
+    audio = "https://i.y.qq.com/v8/playsong.html?songid=384366071&songtype=0"
+    title = config.title
+
+    return Message(MessageSegment.music_custom(url=url, audio=audio, title=title))
+
+
 async def get_key():
     api = config.trace_api
     v = config.trace_secret
@@ -153,16 +186,18 @@ async def fetch_trace(k):
     result = r.json()
     return result
 
+
 async def random_image():
     result = await get_dmoe()
-    if result['code']=="200":
+    if result['code'] == "200":
         imgurl = result['imgurl']
 
     return imgurl
 
+
 async def get_dmoe():
     url = "https://www.dmoe.cc/random.php"
-    params = {"return":"json"}
+    params = {"return": "json"}
     r = httpx.get(url, params=params)
     logger.debug(r.text)
     result = r.json()
