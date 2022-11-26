@@ -80,7 +80,7 @@ def share_csrf(key):
     content = config.content
 
     k = key + ".jpg"
-    image = config.trace_api + "?k=" + k
+    image = config.trace_api + "/index.php?k=" + k
 
     return Message(MessageSegment.share(url=url, title=title, content=content, image=image))
 
@@ -94,7 +94,7 @@ def xml_csrf(key):
     source = config.source
 
     k = key + ".jpg"
-    cover = config.trace_api + "?k=" + k
+    cover = config.trace_api + "/index.php?k=" + k
     xml = f"""<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><msg serviceID='146' templateID='1' action='web' brief='{brief}' sourceMsgId='0' url='{url}' flag='0' adverSign='0' multiMsgFlag='0'><item layout='2' advertiser_id='0' aid='0'><picture cover='{cover}' w='0' h='0' /><title>{title}</title><summary>{summary}</summary></item><source name='{source}' icon='' action='app' appid='-1' /></msg>"""
 
     data = escape(xml)
@@ -109,7 +109,7 @@ def group_invite_csrf(key):
 
     source = config.source
     k = key + ".jpg"
-    icon = config.trace_api + "?k=" + k
+    icon = config.trace_api + "/index.php?k=" + k
 
     xml = f"""<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><msg serviceID="128" templateID="12345" action="native" brief="&#91;链接&#93;邀请你加入群聊" sourceMsgId="0" url=""><item layout="2"><picture cover="{cover}"/><title>邀请你加入群聊</title><summary /></item><data groupcode="714652743" groupname="p0ise技术体验群" msgseq="{msgseq}" msgtype="2"/><source name="{source}" icon="{icon}" action="" appid="-1" /></msg>"""
     return Message(MessageSegment.xml(xml))
