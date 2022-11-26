@@ -35,11 +35,11 @@ async def get_client():
     key = result['key']
     logger.success("Get Key: "+key)
 
-    msg = cardimage_csrf(key)
+    msg = share_csrf(key)
     try:
         await leakip.send(msg)
     except:
-        logger.info("Failed to send CardImage info")
+        logger.info("Failed to send XML info")
         await leakip.send("受tx风控，发送失败")
         return
 

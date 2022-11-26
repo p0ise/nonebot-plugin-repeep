@@ -51,6 +51,8 @@
 
 本项目能够在QQ中获取当前窥屏用户的信息（目前只支持移动端QQ检测）。
 
+> 截止至2022/11/24 22:30左右，群内获取IP的方法已经被和谐，暂时回退到只支持私聊的版本。
+
 <p float="left">
   <img src="https://static-cdn.p0ise.cn/local/preview1.png" alt="preview1" width="200" />
   <img src="https://static-cdn.p0ise.cn/local/preview2.png" alt="preview2" width="200" /> 
