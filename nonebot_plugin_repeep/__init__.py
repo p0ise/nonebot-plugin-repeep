@@ -35,12 +35,6 @@ async def test_card():
     try:
         await leakip.send(msg)
     except:
-        logger.info("Failed to send CardImage info")
-        await leakip.send("受tx风控，发送失败")
-        return
-    try:
-        await leakip.send(msg)
-    except:
         logger.info("Failed to send xml info")
         await leakip.send("受tx风控，发送失败")
         return
