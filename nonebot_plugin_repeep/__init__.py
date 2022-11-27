@@ -28,7 +28,16 @@ leakip = on_command("leakip", aliases={"谁在窥屏"})
 @test.handle()
 async def test_card():
     key = "deadbeef"
-    msg = json_csrf(key)
+    imgurl = None
+    if config.image == "random":
+        imgurl = await random_image()
+    msg = cardimage_csrf(key, imgurl)
+    try:
+        await leakip.send(msg)
+    except:
+        logger.info("Failed to send CardImage info")
+        await leakip.send("受tx风控，发送失败")
+        return
     try:
         await leakip.send(msg)
     except:
@@ -50,7 +59,7 @@ async def get_client():
 
     imgurl = None
     if config.image == "random":
-        imgurl = random_image()
+        imgurl = await random_image()
     msg = cardimage_csrf(key, imgurl)
     try:
         await leakip.send(msg)
@@ -139,9 +148,9 @@ def cardimage_csrf(key, imgurl=None):
     source = config.source
 
     k = key + ".jpg"
-    icon = config.trace_api + "/index.php?k=" + k
+    # icon = config.trace_api + "/index.php?k=" + k
 
-    cardimage = f"""[CQ:cardimage,file={file},source={source},icon={icon}]"""
+    cardimage = f"""[CQ:cardimage,file={file},source={source}]"""
     return Message(cardimage)
 
 
