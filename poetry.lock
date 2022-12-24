@@ -41,7 +41,7 @@ chardet = ">=3.0.2"
 name = "certifi"
 version = "2022.9.24"
 description = "Python package for providing Mozilla's CA Bundle."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -131,7 +131,7 @@ python-versions = ">=3.7"
 name = "httpcore"
 version = "0.16.1"
 description = "A minimal low-level HTTP client."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -160,7 +160,7 @@ test = ["Cython (>=0.29.24,<0.30.0)"]
 name = "httpx"
 version = "0.23.1"
 description = "The next generation HTTP client."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -426,7 +426,7 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 name = "rfc3986"
 version = "1.5.0"
 description = "Validating URI References per RFC 3986"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -611,7 +611,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "3ea979eea5e8815cfa28143e34c84e88a1e6016c5d54ad6156671a8b95acd3f7"
+content-hash = "32e851f32df24552a4ed4fd61fa1982f4f10260bc7b334480d11aa418e9da99a"
 
 [metadata.files]
 anyio = [
